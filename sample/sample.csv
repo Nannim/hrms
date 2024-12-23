@@ -1,0 +1,2 @@
+role_id,user_name,password,status,first_name,last_name,finger_id,department_id,designation_id,branch_id,supervisor_id,work_shift_id,pay_grade_id,hourly_salaries_id,email,date_of_birth,date_of_joining,date_of_leaving,marital_status,address,emergency_contacts,gender,religion,phone
+1,unique_user34,123,1,Name 1,hossain,220,6,19,2,,1,1,,email1@gmail.com,1994-10-13,2015-02-12,,Married,lorems,m address,Male,islam,26666655666

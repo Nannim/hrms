@@ -1,0 +1,51 @@
+<?php
+
+return [
+
+    'payment_info' => 'ข้อมูลการชำระเงิน',
+    'generate_salary_sheet' => 'สร้างแผ่นเงินเดือน',
+    'generate_payslip' => 'สร้างสลิปเงินเดือน',
+    'paid' => 'ต้องจ่าย',
+    'unpaid' => 'ยังไม่ได้ชำระ',
+    'pay_grade' => 'จ่ายเกรด',
+    'basic_salary' => 'เงินเดือนทั่วไป',
+    'gross_salary' => 'เงินเดือนขั้นต้น', 
+    'generate_salary' => 'สร้างเงินเดือน',
+    'generate_payslip' => 'สร้างสลิปเงินเดือน',
+    'make_payment' => 'ชำระเงิน',
+    'total_allowance' => 'ค่าเผื่อรวม',
+    'total_deduction' => 'รวมหัก',
+    'payment_method' => 'วิธีการชำระเงิน',
+    'cash' => 'เงินสด',
+    'cheque' => 'ตรวจสอบ',
+    'comments' => 'ความคิดเห็น',
+    'pay' => 'การจ่ายเงิน',
+    'salary_sheet' => 'แผ่นเงินเดือน',
+    'final_balance' => 'ยอดดุลสุดท้าย',
+    'net_salary' => 'เงินเดือนสุทธิ ',
+    'taxable_salary' => 'เงินเดือนที่ต้องเสียภาษี',
+    'income_tax_to_pay_for_the_month' => 'ภาษีเงินได้ที่ต้องชำระสำหรับเดือน',
+    'company_tax_deduction' => 'การลดหย่อนภาษี บริษัท',
+    'employee_tax_payable' => 'ชำระภาษีพนักงาน',
+    'provident_fund' => 'กองทุนสำรองเลี้ยงชีพ',
+    'absence_amount' => 'จำนวนที่ขาด',
+    'over_time' => 'ล่วงเวลา',
+    'net_salary_to_be_paid' => 'เงินเดือนสุทธิที่จะต้องจ่าย',
+    'total_income_tax_deduction_for_the_financial_year' => 'ภาษีเงินได้ที่หักรวมสำหรับปีการเงิน',
+    'administrator_signature' => 'ลายเซ็นผู้ดูแลระบบ',
+    'no' => 'ไม่',
+    'number_of_working_days' => 'จำนวนวันทำงาน',
+    'number_of_worked_in_them_month' => 'จำนวนวันทำงานในเดือน',
+    'unjustified_absence' => 'การขาดงานโดยไม่ยุติธรรม',
+    'per_day_salary' => 'เงินเดือนต่อวัน',
+    'over_rate' => 'สูงกว่าอัตรา',
+
+      // newly added 
+
+    'employee_payslip' => 'สลิปเงินเดือนพนักงาน',
+    'adminstrator_signature' => 'ลายเซ็นต์พนักงาน',
+    'employee_signature' => 'ลายเซ็นผู้ดูแลระบบ',
+    'working_hour' => 'ชั่วโมงทำงาน',
+    'total_salary' => 'เงินเดือนรวม',
+
+];

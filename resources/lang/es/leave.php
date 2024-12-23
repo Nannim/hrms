@@ -1,0 +1,46 @@
+<?php 
+
+return [
+
+    'leave_type_list' => 'Dejar lista de tipos',
+    'add_leave_type' => 'Agregar tipo de licencia',
+    'view_leave_type' => 'Ver tipo de licencia',
+    'edit_leave_type' => 'Editar tipo de licencia',
+    'leave_type_name' => 'Dejar tipo de nombre',
+    'number_of_day' => 'Numero de dia',
+    'earn_leave_configuration' => 'Ganar configuración de licencia',
+    'rules_of_earn_leave' => ' Reglas de ganar licencia ',
+    'for_month' => 'Por mes',
+    'day_of_earn_leave' => 'Día de ganar licencia',
+    'my_application_list' => 'Mi lista de aplicaciones',
+    'apply_for_leave' => 'Solicitar permiso',
+    'employee_name' => 'Nombre de empleado',
+    'leave_type' => 'Dejar tipo',
+    'request_duration' => 'Duración de la solicitud',
+    'number_of_day' => 'Numero de dia',
+    'approve_status' => 'Aprobar estado',
+    'reject_status' => 'Rechazar estado',
+    'leave_applicaiton' => 'Deje la aplicación',
+    'leave_applicaiton_form' => 'Dejar formulario de solicitud',
+    'view_leave_applicaiton' => 'Ver solicitud de licencia',
+    'send_application' => 'Enviar solicitud',
+    'requested_application' => 'Solicitud solicitada',
+    'employee_leave_report' => 'Informe de licencia de empleado',
+    'employee' => 'Empleada',
+    'from_date' => 'Fecha de formulario',
+    'to_date' => 'Hasta la fecha',
+    'leave_summary_report' => 'Dejar informe resumido',
+    'my_leave_report' => 'Mi informe de licencia',
+    'applied_date' => 'Fecha de aplicación',
+    'approve_by' => 'Aprobado por',
+    'approve_date' => 'Fecha de aprobación',
+    'purpose' => 'Propósito',
+    'number_of_days' => 'Numero de dia',
+
+        // newly added 
+
+    'you_have_no_leave_application' => 'no tienes solicitud de licencia',
+    'request_date' => 'Fecha de solicitud',
+    'current_balance' => 'Saldo actual de licencia',
+    'leave_consume' => 'dejar consumir',
+];

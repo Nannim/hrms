@@ -1,0 +1,233 @@
+@extends('admin.master')
+@section('content')
+@section('title','Employee Payslip')
+<div class="container-fluid">
+	<div class="row bg-title">
+		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+			<ol class="breadcrumb">
+				<li class="active breadcrumbColor"><a href="{{ url('dashboard') }}"><i class="fa fa-home"></i> Dashboard</a></li>
+				<li>@yield('title')</li>
+
+			</ol>
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-info">
+				<div  class="panel-heading"><i class="mdi mdi-clipboard-text fa-fw"></i> Employee Payslip</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<h4 style="margin-left: 22px;">
+							<a class="btn btn-success" style="color: #fff" href="{{ URL('downloadPayslip/'.$paySlipId)}}"><i class="fa fa-download fa-lg" aria-hidden="true"></i> Download PDF</a>
+						</h4>
+					</div>
+				</div>
+
+				<div class="row" style="margin-top: 25px">
+					<div class="col-md-4">
+						<div class="headingStyle" style="margin-left: 30px;">
+							@if($companyAddress){!! $companyAddress->address !!}@endif
+						</div>
+					</div>
+
+					<div class="col-md-offset-3 col-md-5">
+						<div class="headingStyle" style=" margin-left: 42px;">
+							<div class="" style="margin-bottom:5px">
+								<strong>Employee Name :</strong>
+								{{$salaryDetails->first_name}} {{$salaryDetails->last_name}}
+							</div>
+							<div class="" style="margin-bottom:5px ">
+								<strong>Department :</strong>
+								{{$salaryDetails->department_name}}
+							</div>
+							<div class="" style="margin-bottom:5px ">
+								<strong>Designation :</strong>
+								{{$salaryDetails->designation_name}}
+							</div>
+							<div class="" style="margin-bottom:5px ">
+								<strong>Pay Grade :</strong>
+								{{$salaryDetails->pay_grade_name}} (Monthly)
+							</div>
+							<div class="" style="margin-bottom:5px ">
+								<strong>Payment Method :</strong>
+								{{$salaryDetails->payment_method}}
+							</div>
+
+						</div>
+
+					</div>
+					<div class="col-md-12 text-center">
+						@php
+							$monthAndYear   = explode('-',$salaryDetails->month_of_salary);
+
+                            $month = $monthAndYear[1];
+                            $dateObj   = DateTime::createFromFormat('!m', $month);
+                            $monthName = $dateObj->format('F');
+                            $year = $monthAndYear[0];
+
+                            $monthAndYearName = $monthName." ".$year;
+						@endphp
+						<h3><strong>Payslip {{$monthAndYearName}}</strong></h3>
+					</div>
+				</div>
+
+
+
+				<div class="panel-wrapper collapse in" aria-expanded="true">
+					<div class="panel-body">
+						<div class="form-body">
+							<div class="table-responsive">
+								<table class="table table-hover manage-u-table">
+									<thead class="">
+									<tr>
+										<th style="width: 100px">#</th>
+										<th>Description</th>
+										<th style="width: 300px">Amount</th>
+									</tr>
+									</thead>
+									<tbody>
+									{{--Allowance and basic salary --}}
+									@php
+										$totalAllowanceAndBasicSalary = 0;
+										$totalDeduction = 0;
+									@endphp
+									<tr>
+										<td colspan="3"><b>Allowance</b></td>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>Basic Salary</td>
+										<td>
+											@php
+												$totalAllowanceAndBasicSalary += $salaryDetails->basic_salary;
+											@endphp
+											{{number_format($salaryDetails->basic_salary)}}
+										</td>
+									</tr>
+
+									@php $allowance = 1 @endphp
+									@if(count($salaryDetailsToAllowance) > 0)
+										@foreach($salaryDetailsToAllowance as $allowanceValue)
+											@php
+												$totalAllowanceAndBasicSalary += $allowanceValue->amount_of_allowance;
+											@endphp
+										<tr>
+											<td>{{++$allowance}}</td>
+											<td>{{$allowanceValue->allowance_name}}	</td>
+											<td>
+												{{number_format($allowanceValue->amount_of_allowance)}}
+											</td>
+										</tr>
+										@endforeach
+									@endif
+									@if($salaryDetails->total_overtime_amount !=0)
+										@php
+											$totalAllowanceAndBasicSalary += $salaryDetails->total_overtime_amount;
+										@endphp
+									<tr>
+										<td>{{++$allowance}}</td>
+										<td>Over Time	</td>
+										<td>
+											{{number_format($salaryDetails->total_overtime_amount)}}
+										</td>
+									</tr>
+									@endif
+									<tr>
+										<td colspan="2" class="text-right"><b>Total Basic Salary and Allowance :</b></td>
+										<td>
+											<b>{{number_format($totalAllowanceAndBasicSalary)}}</b>
+										</td>
+									</tr>
+									{{--Deduction--}}
+
+									<tr>
+										<td colspan="3"><b>Deduction</b></td>
+									</tr>
+									@php $deduction = 0 @endphp
+									@if(count($salaryDetailsToDeduction) > 0)
+										@foreach($salaryDetailsToDeduction as $deductionValue)
+											@php $totalDeduction += $deductionValue->amount_of_deduction @endphp
+											<tr>
+												<td>{{++$deduction}}</td>
+												<td>{{$deductionValue->deduction_name}}	</td>
+												<td>
+													{{number_format($deductionValue->amount_of_deduction)}}
+												</td>
+											</tr>
+										@endforeach
+									@endif
+									@if($salaryDetails->total_late_amount !=0)
+										@php $totalDeduction += $salaryDetails->total_late_amount @endphp
+										<tr>
+											<td>{{++$deduction}}</td>
+											<td>Late	</td>
+											<td>
+												{{number_format($salaryDetails->total_late_amount)}}
+											</td>
+										</tr>
+									@endif
+									@if($salaryDetails->total_absence_amount !=0)
+										@php $totalDeduction += $salaryDetails->total_absence_amount @endphp
+										<tr>
+											<td>{{++$deduction}}</td>
+											<td>Absence	</td>
+											<td>
+												{{number_format($salaryDetails->total_absence_amount)}}
+											</td>
+										</tr>
+									@endif
+									@if($salaryDetails->tax !=0)
+										@php $totalDeduction += $salaryDetails->tax @endphp
+										<tr>
+											<td>{{++$deduction}}</td>
+											<td>Tax	</td>
+											<td>
+												{{number_format($salaryDetails->tax)}}
+											</td>
+										</tr>
+									@endif
+									<tr>
+										<td colspan="2" class="text-right"><b>Total Deduction :</b></td>
+										<td>
+											<b>{{number_format($totalDeduction)}}</b>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" class="text-right"><b>Gross Salary :</b></td>
+										<td><b>{{ number_format($totalAllowanceAndBasicSalary -  $totalDeduction)}}</b></td>
+									</tr>
+
+									<tr>
+										<td colspan="3" class="text-center"><b>
+												@php
+													$numberToWordConvert =New \App\Lib\NumberToWordConvert();
+                									echo $numberToWordConvert->convert_number($totalAllowanceAndBasicSalary -$totalDeduction );
+												@endphp</b></td>
+									</tr>
+									<tr>
+										<td></td>
+									</tr>
+									</tbody>
+								</table>
+								<div class="col-sm-12 col-xs-12 col-md-4">
+									<strong>Date :</strong>
+								</div>
+								<div class="col-sm-12 col-xs-12 col-md-4">
+									<strong>Signature of Employee :</strong>
+
+								</div>
+								<div class="col-sm-12 col-xs-12 col-md-4">
+									<strong>Director :</strong>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@endsection
+
